@@ -38,14 +38,14 @@ async function buildResponse(req) {
 
     if (email === 'foo@bar.baz') {
       message = `foo@bar.baz failure #${code}`
-      status = 403
+      status = 200
     } else {
       const name = email.split('@')[0]
       message = `${name} win #${code}`
     }
   } catch (err) {
     message = `Ouch: ${err.message}`
-    status = 422
+    status = 200
   }
 
   return [status, { message }]
