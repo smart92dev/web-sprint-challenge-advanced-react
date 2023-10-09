@@ -78,6 +78,7 @@ export default class AppClass extends React.Component {
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
     const { index, steps } = this.state;
+    this.setState({ message: '' })
     let nextValue;
     switch (evt) {
       case 'left':
@@ -153,7 +154,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">Coordinates ({XY.X}, {XY.Y})</h3>
-          <h3 id="steps">You moved {steps} times</h3>
+          <h3 id="steps">You moved {steps} {this.state.steps === 1 ? 'time' : 'times'}</h3>
         </div>
         <div id="grid">
           {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
@@ -173,7 +174,7 @@ export default class AppClass extends React.Component {
           <button id="reset" onClick={() => this.reset()}>reset</button>
         </div>
         <form onSubmit={(e) => this.onSubmit(e)}>
-          <input id="email" type="email" placeholder="type email" onChange={(e) => this.setState({ email: e.target.value })}></input>
+          <input id="email" type="email" value={this.state.email} placeholder="type email" onChange={(e) => this.setState({ email: e.target.value })}></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
